@@ -54,7 +54,19 @@ app.post("/new-message", function(req, res) {
             if (typeof message.text === "undefined") {
                 text = "Can't get it, Please try again!!";
             } else {
-                text = "Is it " + message.text + "?";
+                
+                let sMsgText = message.text;
+                
+                let aMsgText = sMsgText.split(" ");
+                
+                
+                text = "Count: " + aMsgText + "\n\n";
+                text += "Group: " + aMsgText[0] + "\n";
+                text += "Name: " + aMsgText[1] + "\n";
+                text += "Company: " + aMsgText[2] + "\n";
+                text += "Date: " + aMsgText[3] + "\n";
+                text += "Members: " + aMsgText[4];
+                
             }
             
         }
