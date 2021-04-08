@@ -41,25 +41,32 @@ app.post("/new-message", function(req, res) {
 
 	const { message } = req.body;
         
+        let text = null;
+        
         console.log(req);
         console.log(message);
         
 	//Each message contains "text" and a "chat" object, which has an "id" which is the chat id
 
 	if (!message || typeof message.chat == "undefined") {
-		// In case a message is not present, or if our message does not have the word marco in it, do nothing and return an empty response
-		return res.end();
+            
+            if (typeof message.text == "undefined") {
+                text = "Can't get it, Please try again!!"
+            } else {
+                text = "Is it " + message.text + "?";
+            }
 	}
 
 	// If we've gotten this far, it means that we have received a message containing the word "marco".
 	// Respond by hitting the telegram bot API and responding to the appropriate chat_id with the word "Polo!!"
 	// Remember to use your own API toked instead of the one below  "https://api.telegram.org/bot<your_api_token>/sendMessage"
-	axios
-		.post(
+	
+        if(typeof text !== "undefined" || text !== null) {
+        axios.post(
 			"https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
 			{
 				chat_id: message.chat.id,
-				text: message.chat
+				text: text
 			}
 		)
 		.then((response) => {
@@ -72,6 +79,7 @@ app.post("/new-message", function(req, res) {
 			console.log("Error :", err);
 			res.end("Error :" + err);
 		});
+            }
 });
 
 // Finally, start our server
