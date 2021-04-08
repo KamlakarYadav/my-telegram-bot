@@ -60,7 +60,7 @@ app.post("/new-message", function(req, res) {
                 let aMsgText = sMsgText.split(" ");
                 
                 
-                text = "Count: " + aMsgText + "\n\n";
+                text = "Count: " + aMsgText.length + "\n\n";
                 text += "Group: " + aMsgText[0] + "\n";
                 text += "Name: " + aMsgText[1] + "\n";
                 text += "Company: " + aMsgText[2] + "\n";
