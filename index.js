@@ -48,14 +48,16 @@ app.post("/new-message", function(req, res) {
         
 	//Each message contains "text" and a "chat" object, which has an "id" which is the chat id
 
-	if (!message || typeof message.chat == "undefined") {
-            
-            if (typeof message.text == "undefined") {
-                text = "Can't get it, Please try again!!"
+	if (!message || typeof message.chat === "undefined") {
+            text = "Can't get it, Please try again!!";
+	} else {            
+            if (typeof message.text === "undefined") {
+                text = "Can't get it, Please try again!!";
             } else {
                 text = "Is it " + message.text + "?";
             }
-	}
+            
+        }
 
 	// If we've gotten this far, it means that we have received a message containing the word "marco".
 	// Respond by hitting the telegram bot API and responding to the appropriate chat_id with the word "Polo!!"
