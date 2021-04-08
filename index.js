@@ -43,12 +43,10 @@ app.post("/new-message", function(req, res) {
         
         console.log(req);
         console.log(message);
-        console.log(message.text);
-        console.log(message.text.toLowerCase());
         
 	//Each message contains "text" and a "chat" object, which has an "id" which is the chat id
 
-	if (!message || message.text.toLowerCase().indexOf("hi") < 0) {
+	if (!message || typeof message.chat == "undefined") {
 		// In case a message is not present, or if our message does not have the word marco in it, do nothing and return an empty response
 		return res.end();
 	}
@@ -61,7 +59,7 @@ app.post("/new-message", function(req, res) {
 			"https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
 			{
 				chat_id: message.chat.id,
-				text: "Hello!!"
+				text: message.chat
 			}
 		)
 		.then((response) => {
