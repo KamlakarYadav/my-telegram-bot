@@ -38,9 +38,14 @@ app.get('/', (req, res) => {
 
 //This is the route the API will call
 app.post("/new-message", function(req, res) {
-    console.log(req);
-	const { message } = req.body;
 
+	const { message } = req.body;
+        
+        console.log(req);
+        console.log(message);
+        console.log(message.text);
+        console.log(message.text.toLowerCase());
+        
 	//Each message contains "text" and a "chat" object, which has an "id" which is the chat id
 
 	if (!message || message.text.toLowerCase().indexOf("hi") < 0) {
