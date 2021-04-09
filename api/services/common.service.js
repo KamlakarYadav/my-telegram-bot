@@ -38,19 +38,25 @@ module.exports = function (Common, oauth, log) {
 
                     let sMsgText = message.text;
 
-                    let aMsgText = sMsgText.split(" ");
+                    let res1 = sMsgText.match(/[a-zA-Z]{1,2}-\d{1,2}\D[a-zA-Z]{1,2}\D[a-zA-Z]{1,4}\D\d{1,4}\D\d\/\d{2}/gm);
 
-                    let oMsg = {
-                        group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
-                        name: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
-                        company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
-                        date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
-                        members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA"
-                    };
+                    if(res1 !== null){
+                        let aMsgText = res1.split(" ");
+                    
+                        let oMsg = {
+                            group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
+                            name: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
+                            company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
+                            date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
+                            members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA"
+                        };
 
-                    let result = await Common.save(oMsg);
+//                    let result = await Common.save(oMsg);
 
-                    text = result + oMsg;
+                        text = oMsg;
+                    
+                    
+                    }
 
                 }
 
