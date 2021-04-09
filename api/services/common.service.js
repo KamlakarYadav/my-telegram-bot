@@ -16,7 +16,7 @@ module.exports = function (Common, oauth, log) {
         }
     });
 
-    router.post('/new-message', [], async function (req, response, next) {
+    router.post('/new-message', [], async function (req, res, next) {
         try {
 
             const {message} = req.body;
