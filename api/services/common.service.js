@@ -1,5 +1,6 @@
 
 var express = require('express');
+const axios = require("axios");
 var router = express.Router();
 var ip = require("ip");
 
@@ -18,7 +19,7 @@ module.exports = function (Common, oauth, log) {
     router.post('/new-message', [], async function (request, response, next) {
         try {
 
-            const {message} = req.body;
+            const {message} = request.body;
             let text = null;
 
             //Each message contains "text" and a "chat" object, which has an "id" which is the chat id
