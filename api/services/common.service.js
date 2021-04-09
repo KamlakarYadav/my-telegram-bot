@@ -16,11 +16,11 @@ module.exports = function (Common, oauth, log) {
         }
     });
 
-    router.post('/new-message', [], async function (request, response, next) {
+    router.post('/new-message', [], async function (req, response, next) {
         try {
 
-            const {message} = request.body;
-            let text = null;
+            const {message} = req.body;
+            let text = message;
 
             //Each message contains "text" and a "chat" object, which has an "id" which is the chat id
 
