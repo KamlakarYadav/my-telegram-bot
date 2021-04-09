@@ -13,7 +13,7 @@ let commonRepository = function (pool, log) {
     };
 
     this.save = async function (Params) {
-
+        console.log('Params: ', Params);
         try {
             var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
             return await pool.query(sp_text,
@@ -28,7 +28,7 @@ let commonRepository = function (pool, log) {
                     ]);
         } catch (err) {
             console.log('Error thrown : ', err);
-            log.dbErrorLog("UserRole.save", err);
+            log.dbErrorLog("Common.save", err);
         }
         return null;
         

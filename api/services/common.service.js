@@ -19,7 +19,12 @@ module.exports = function (Common, oauth, log) {
     router.post('/new-message', [], async function (req, res, next) {
         try {
 
-            const {message} = req.body;
+            
+            console.log("req", req.body);
+            const message = req.body;
+            
+            console.log("message", message);
+            
             let text = message;
 
             //Each message contains "text" and a "chat" object, which has an "id" which is the chat id
@@ -40,12 +45,12 @@ module.exports = function (Common, oauth, log) {
                         name: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
                         company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                         date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
-                        members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA",
+                        members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA"
                     };
 
-//                    let result = await Common.save(oMsg);
+                    let result = await Common.save(oMsg);
 
-                    text = oMsg;
+                    text = result + oMsg;
 
                 }
 
