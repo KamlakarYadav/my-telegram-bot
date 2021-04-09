@@ -21,7 +21,7 @@ module.exports = function (Common, oauth, log) {
 
             
             console.log("req", req.body);
-            const message = req.body;
+            const message = req.body.message;
             
             console.log("message", message);
             
