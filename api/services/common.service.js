@@ -43,9 +43,9 @@ module.exports = function (Common, oauth, log) {
                         members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA",
                     };
 
-                    let result = await Common.save(oMsg);
+//                    let result = await Common.save(oMsg);
 
-                    text = result;
+                    text = oMsg;
 
                 }
 
