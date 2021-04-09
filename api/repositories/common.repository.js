@@ -18,12 +18,12 @@ let commonRepository = function (pool, log) {
             var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
             return await pool.query(sp_text,
                     [
-                        item["id"] != null ? parseInt(item.id) : null,
-                        item.group,
-                        item.name,
-                        item.company,
-                        item.date,
-                        item.members
+                        Params["id"] != null ? parseInt(item.id) : null,
+                        Params.group,
+                        Params.name,
+                        Params.company,
+                        Params.date,
+                        Params.members
                         
                     ]);
         } catch (err) {
