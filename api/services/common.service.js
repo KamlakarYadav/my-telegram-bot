@@ -41,7 +41,7 @@ module.exports = function (Common, oauth, log) {
                     let res1 = sMsgText.match(/[a-zA-Z]{1,2}-\d{1,2}\D[a-zA-Z]{1,2}\D[a-zA-Z]{1,4}\D\d{1,4}\D\d\/\d{2}/gm);
 
                     if(res1 !== null){
-                        let aMsgText = res1.split(" ");
+                        let aMsgText = res1[0].split(" ");
                     
                         let oMsg = {
                             group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
