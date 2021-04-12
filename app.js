@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-var Container = require('plus.container');
+const Container = require('plus.container');
 
 // create express app
 const app = express();
