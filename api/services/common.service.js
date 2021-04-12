@@ -51,7 +51,9 @@ module.exports = function (Common, oauth, log) {
                             members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4].replace('$','') : "NA"
                         };
 
-//                    let result = await Common.save(oMsg);
+                    let result = await Common.save(oMsg);
+
+                    console.log(result);
 
                         text = oMsg;
                     
