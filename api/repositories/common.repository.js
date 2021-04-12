@@ -15,7 +15,7 @@ let commonRepository = function (pool, log) {
     this.save = async function (Params) {
         console.log('Params: ', Params);
         try {
-            var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
+            var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
             return await pool.query(sp_text,
                     [
                         Params["id"] != null ? parseInt(item.id) : null,
@@ -23,7 +23,8 @@ let commonRepository = function (pool, log) {
                         Params.name,
                         Params.company,
                         Params.date,
-                        Params.members
+                        Params.members,
+                        Params.message
                         
                     ]);
         } catch (err) {

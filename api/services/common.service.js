@@ -19,12 +19,12 @@ module.exports = function (Common, oauth, log) {
     router.post('/new-message', [], async function (req, res, next) {
         try {
 
-            
-            console.log("req", req.body);
+
+//            console.log("req", req.body);
             const message = req.body.message;
-            
-            console.log("message", message);
-            
+
+//            console.log("message", message);
+
             let text = message;
 
             //Each message contains "text" and a "chat" object, which has an "id" which is the chat id
@@ -40,24 +40,29 @@ module.exports = function (Common, oauth, log) {
 
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
 
-                    if(res1 !== null){
+                    if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
-                    
+
                         let oMsg = {
-                            group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$','') : "NA",
+                            group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
                             name: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
                             company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                             date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
-                            members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4].replace('$','') : "NA"
+                            members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4].replace('$', '') : "NA",
+                            message: sMsgText
                         };
 
-                    let result = await Common.save(oMsg);
+                        let rows = await Common.save(oMsg);
+                        
+                        let result = JSON.parse(JSON.stringify(rows))[2][0];
+                        response.status(200).send(result);
 
-                    console.log(result);
+                        console.log(result);
 
-                        text = oMsg;
-                    
-                    
+                        text = result;
+                        text += oMsg;
+
+
                     }
 
                 }
