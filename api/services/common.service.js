@@ -44,11 +44,11 @@ module.exports = function (Common, oauth, log) {
                         let aMsgText = res1[0].split("-");
                     
                         let oMsg = {
-                            group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
+                            group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$','') : "NA",
                             name: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
                             company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                             date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
-                            members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4] : "NA"
+                            members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4].replace('$','') : "NA"
                         };
 
 //                    let result = await Common.save(oMsg);
