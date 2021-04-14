@@ -12,6 +12,28 @@ let commonRepository = function (pool, log) {
         return null;
     };
 
+    this.getTodaysTotalDsi = async function () {
+        try {
+            return await pool.query("call spc_tg_common_todays_total_dsi_count()", []);
+        }
+        catch (err) {
+            console.log('Error thrown : ', err);
+            log.dbErrorLog("common.service - getAllItem", err);
+        } 
+        return null;
+    };
+        
+    this.getTodaysGroupwiseTotalDsi = async function () {
+        try {
+            return await pool.query("call spc_tg_common_todays_groupwise_total_dsi_count()", []);
+        }
+        catch (err) {
+            console.log('Error thrown : ', err);
+            log.dbErrorLog("common.service - getAllItem", err);
+        } 
+        return null;
+    };
+    
     this.save = async function (Params) {
         console.log('Params: ', Params);
         try {
