@@ -87,13 +87,10 @@ module.exports = function (Common, oauth, log) {
             // Respond by hitting the telegram bot API and responding to the appropriate chat_id with the word "Polo!!"
             // Remember to use your own API toked instead of the one below  "https://api.telegram.org/bot<your_api_token>/sendMessage"
 
-            const rule = new schedule.RecurrenceRule();
-            rule.dayOfWeek = [new schedule.Range(0, 6)];
-            rule.hour = 13;
-            rule.minute = 50;
-
-            schedule.scheduleJob(rule, function(){
-                    
+            schedule.scheduleJob("*/5 * * * *", function(fireDate){
+                
+                console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());   
+                
                 if (typeof text !== "undefined" || text !== null) {
                     axios.post(
                         "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
