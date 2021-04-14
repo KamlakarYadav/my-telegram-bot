@@ -90,7 +90,7 @@ module.exports = function (Common, oauth, log) {
             const rule = new schedule.RecurrenceRule();
             rule.dayOfWeek = [new schedule.Range(0, 6)];
             rule.hour = 13;
-            rule.minute = 40;
+            rule.minute = 50;
 
             schedule.scheduleJob(rule, function(){
                     
