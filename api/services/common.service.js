@@ -89,6 +89,7 @@ module.exports = function (Common, oauth, log) {
 
             schedule.scheduleJob("*/5 * * * *", function(fireDate){
                 
+                console.log(message);   
                 console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());   
                 
                 if (typeof text !== "undefined" || text !== null) {
