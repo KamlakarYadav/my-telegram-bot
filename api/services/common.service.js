@@ -53,29 +53,29 @@ module.exports = function (Common, oauth, log) {
                             message: sMsgText
                         };
 
-                        let rows = await Common.save(oMsg);
+//                        let rows = await Common.save(oMsg);
                         
-                        let result = JSON.parse(JSON.stringify(rows))[2][0];
+//                        let result = JSON.parse(JSON.stringify(rows))[2][0];
 //                        response.status(200).send(result);
 
-                        console.log(result);
+//                        console.log(result);
                         
-                        text = result;
-                        text += oMsg;
+//                        text = result;
+                        text = oMsg;
                         
-                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
-                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));
+//                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
+//                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));
                         
-                        let todaysGroupwiseTotalDsi = await Common.getTodaysGroupwiseTotalDsi();
-                        let oTodaysGroupwiseTotalDsi = JSON.parse(JSON.stringify(todaysGroupwiseTotalDsi[0]));
+//                        let todaysGroupwiseTotalDsi = await Common.getTodaysGroupwiseTotalDsi();
+//                        let oTodaysGroupwiseTotalDsi = JSON.parse(JSON.stringify(todaysGroupwiseTotalDsi[0]));
 
-                        console.log(oTodaysTotalDsi);
-                        console.log(oTodaysGroupwiseTotalDsi);
+//                        console.log(oTodaysTotalDsi);
+//                        console.log(oTodaysGroupwiseTotalDsi);
                         
                         
-                        text += oTodaysTotalDsi;
+//                        text += oTodaysTotalDsi;
                         
-                        text += oTodaysGroupwiseTotalDsi;
+//                        text += oTodaysGroupwiseTotalDsi;
 
                     }
 
