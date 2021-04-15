@@ -50,18 +50,19 @@ module.exports = function (Common, oauth, log) {
                             company: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                             date: (typeof aMsgText[3] !== "undefined") ? aMsgText[3] : "NA",
                             members: (typeof aMsgText[4] !== "undefined") ? aMsgText[4].replace('$', '') : "NA",
+                            chat_id: message.chat.id,
                             message: sMsgText
                         };
 
-//                        let rows = await Common.save(oMsg);
+                        let rows = Common.save(oMsg);
                         
-//                        let result = JSON.parse(JSON.stringify(rows))[2][0];
+                        let result = JSON.parse(JSON.stringify(rows))[2][0];
 //                        response.status(200).send(result);
 
-//                        console.log(result);
+                        console.log(result);
                         
-//                        text = result;
-                        text = oMsg;
+                        text = result;
+                        text += oMsg;
                         
 //                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
 //                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));
@@ -87,7 +88,7 @@ module.exports = function (Common, oauth, log) {
             // Respond by hitting the telegram bot API and responding to the appropriate chat_id with the word "Polo!!"
             // Remember to use your own API toked instead of the one below  "https://api.telegram.org/bot<your_api_token>/sendMessage"
 
-            schedule.scheduleJob("*/5 * * * *", function(fireDate){
+            schedule.scheduleJob("*/5 * * * * *", function(fireDate){
                 
                 console.log(message);   
                 console.log('This job was supposed to run at ' + fireDate + ', but actually ran at ' + new Date());   
