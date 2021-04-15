@@ -54,17 +54,15 @@ module.exports = function (Common, oauth, log) {
                             message: sMsgText
                         };
 
-                        let rows = Common.save(oMsg);
+//                        let rows = await Common.save(oMsg);
                         
-                        console.log("rows", rows);
-                        
-                        let result = JSON.parse(JSON.stringify(rows))[2][0];
+//                        let result = JSON.parse(JSON.stringify(rows))[2][0];
 //                        response.status(200).send(result);
 
-                        console.log("result", result);
+//                        console.log(result);
                         
-                        text = result;
-                        text += oMsg;
+//                        text = result;
+                        text = oMsg;
                         
 //                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
 //                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));

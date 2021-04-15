@@ -38,7 +38,7 @@ let commonRepository = function (pool, log) {
         console.log('Params: ', Params);
         try {
             var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
-            return pool.query(sp_text,
+            return await pool.query(sp_text,
                     [
                         Params["id"] != null ? parseInt(item.id) : null,
                         Params.group,
