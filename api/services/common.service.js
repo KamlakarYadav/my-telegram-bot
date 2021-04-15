@@ -56,10 +56,12 @@ module.exports = function (Common, oauth, log) {
 
                         let rows = Common.save(oMsg);
                         
+                        console.log("rows", rows);
+                        
                         let result = JSON.parse(JSON.stringify(rows))[2][0];
 //                        response.status(200).send(result);
 
-                        console.log(result);
+                        console.log("result", result);
                         
                         text = result;
                         text += oMsg;
