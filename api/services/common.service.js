@@ -44,8 +44,9 @@ module.exports = function (Common, oauth, log) {
                     let company_today_dsi = sMsgText.match(/\/company_today_dsi/gm);
 
                     if (company_today_dsi !== null) {
-                        const param1 = sMsgText.split(' ')[1];
-                        const param2 = sMsgText.split(' ')[2];
+                        const params = sMsgText.split(' ');
+                        const param1 = params[1];
+                        const param2 = params[2];
                         // 'msg' is the received Message from Telegram
                         // 'match' is the result of executing the regexp above on the text content
                         // of the message
