@@ -47,7 +47,7 @@ module.exports = function (Common, oauth, log) {
 //                URLs.push(url);
                 bot.sendMessage(
                         chatId,
-                        param + ' Today: 5',
+                        ` ${param} Today: 5'`,
                         );
             });
 
