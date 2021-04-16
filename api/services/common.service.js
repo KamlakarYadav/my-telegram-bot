@@ -9,10 +9,6 @@ const token = "1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE";
 var router = express.Router();
 var ip = require("ip");
 
-const bot = new TelegramBot(token, {
-   polling: false
-});
-
 module.exports = function (Common, oauth, log) {
 
     router.get('/search', [], async function (request, response, next) {
@@ -27,11 +23,19 @@ module.exports = function (Common, oauth, log) {
 
     router.post('/new-message', [], async function (req, res, next) {
         try {
+
+            const bot = new TelegramBot(token, {
+                polling: false
+            });
+            
+            console.log(`bot: ${bot}`);
             
             // Listener (handler) for telegram's /bookmark event
             bot.onText(/\/company_today_dsi/, (msg, match) => {
                 const chatId = msg.chat.id;
+                console.log(`chatId: ${chatId}`);
                 const param = match.input.split(' ')[1];
+                console.log(`param: ${param}`);
                 // 'msg' is the received Message from Telegram
                 // 'match' is the result of executing the regexp above on the text content
                 // of the message
