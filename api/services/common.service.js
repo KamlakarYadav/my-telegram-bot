@@ -3,7 +3,6 @@ const express = require('express');
 const axios = require("axios");
 const schedule = require("node-schedule");
 var router = express.Router();
-var ip = require("ip");
 
 module.exports = function (Common, oauth, log) {
 
@@ -19,7 +18,6 @@ module.exports = function (Common, oauth, log) {
 
     router.post('/new-message', [], async function (req, res, next) {
         try {
-
 
             console.log("req", req.body);
             const message = req.body.message;
@@ -42,53 +40,53 @@ module.exports = function (Common, oauth, log) {
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
 
                     let company_dsi = sMsgText.match(/\/company_dsi/gm);
-                    
+
                     console.log(company_dsi);
 
                     if (company_dsi !== null) {
                         const params = sMsgText.split(' ');
-                    console.log(params);
+                        console.log(params);
                         const param1 = params[1];
-                    console.log(param1);
+                        console.log(param1);
                         const param2 = params[2];
-                    console.log(param2);
+                        console.log(param2);
 
                         if (param1 === undefined || param2 === undefined) {
                             axios.post(
-                                "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
-                                {
-                                    chat_id: message.chat.id,
-                                    text: "Please provide a valid inputs!"
-                                }
+                                    "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                    {
+                                        chat_id: message.chat.id,
+                                        text: "Please provide a valid inputs!"
+                                    }
                             ).then((response) => {
                                 // We get here if the message was successfully posted
                                 console.log("Message posted");
                                 res.end("ok");
                             })
-                            .catch((err) => {
-                                // ...and here if it was not
-                                console.log("Error :", err);
-                                res.end("Error :" + err);
-                            });
+                                    .catch((err) => {
+                                        // ...and here if it was not
+                                        console.log("Error :", err);
+                                        res.end("Error :" + err);
+                                    });
                             return;
                         }
 
                         axios.post(
-                        "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
-                            {
-                                chat_id: message.chat.id,
-                                text: `${param2} ${param1}: 5`
-                            }
+                                "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                {
+                                    chat_id: message.chat.id,
+                                    text: `${param2} ${param1}: 5`
+                                }
                         ).then((response) => {
                             // We get here if the message was successfully posted
                             console.log("Message posted");
                             res.end("ok");
                         })
-                        .catch((err) => {
-                            // ...and here if it was not
-                            console.log("Error :", err);
-                            res.end("Error :" + err);
-                        });
+                                .catch((err) => {
+                                    // ...and here if it was not
+                                    console.log("Error :", err);
+                                    res.end("Error :" + err);
+                                });
                     } else if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
 
@@ -103,44 +101,44 @@ module.exports = function (Common, oauth, log) {
                         };
 
 //                        let rows = await Common.save(oMsg);
-                        
+
 //                        let result = JSON.parse(JSON.stringify(rows))[2][0];
 //                        response.status(200).send(result);
 
 //                        console.log(result);
-                        
+
 //                        text = result;
                         if (typeof text !== "undefined" || text !== null) {
                             axios.post(
-                                "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
-                                {
-                                    chat_id: message.chat.id,
-                                    text: oMsg
-                                }
+                                    "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                    {
+                                        chat_id: message.chat.id,
+                                        text: oMsg
+                                    }
                             ).then((response) => {
                                 // We get here if the message was successfully posted
                                 console.log("Message posted");
                                 res.end("ok");
                             })
-                            .catch((err) => {
-                                // ...and here if it was not
-                                console.log("Error :", err);
-                                res.end("Error :" + err);
-                            });
+                                    .catch((err) => {
+                                        // ...and here if it was not
+                                        console.log("Error :", err);
+                                        res.end("Error :" + err);
+                                    });
                         }
-                        
+
 //                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
 //                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));
-                        
+
 //                        let todaysGroupwiseTotalDsi = await Common.getTodaysGroupwiseTotalDsi();
 //                        let oTodaysGroupwiseTotalDsi = JSON.parse(JSON.stringify(todaysGroupwiseTotalDsi[0]));
 
 //                        console.log(oTodaysTotalDsi);
 //                        console.log(oTodaysGroupwiseTotalDsi);
-                        
-                        
+
+
 //                        text += oTodaysTotalDsi;
-                        
+
 //                        text += oTodaysGroupwiseTotalDsi;
 
                     }
@@ -148,34 +146,6 @@ module.exports = function (Common, oauth, log) {
                 }
 
             }
-
-            // If we've gotten this far, it means that we have received a message containing the word "marco".
-            // Respond by hitting the telegram bot API and responding to the appropriate chat_id with the word "Polo!!"
-            // Remember to use your own API toked instead of the one below  "https://api.telegram.org/bot<your_api_token>/sendMessage"
-
-//            schedule.scheduleJob("*/5 * * * * *", function(fireDate){
-                
-//                if (typeof text !== "undefined" || text !== null) {
-//                    axios.post(
-//                        "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
-//                        {
-//                            chat_id: message.chat.id,
-//                            text: text
-//                        }
-//                    ).then((response) => {
-//                        // We get here if the message was successfully posted
-//                        console.log("Message posted");
-//                        res.end("ok");
-//                    })
-//                    .catch((err) => {
-//                        // ...and here if it was not
-//                        console.log("Error :", err);
-//                        res.end("Error :" + err);
-//                    });
-//                }
-            
-//            });
-
 
         } catch (err) {
             console.log(' Error in router : ', err);
@@ -185,5 +155,5 @@ module.exports = function (Common, oauth, log) {
 
 
     return router;
+    
 }
-
