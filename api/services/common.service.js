@@ -4,6 +4,10 @@ const axios = require("axios");
 const schedule = require("node-schedule");
 var router = express.Router();
 
+const telegramBotToken = "1624236294:AAFl3KvH7Fo_XRLDZ5UPFgJwUvTq_4n8lIc";
+const telegramBotSendUrl = "https://api.telegram.org/"+ telegramBotToken +"/sendMessage";
+
+
 module.exports = function (Common, oauth, log) {
 
     router.get('/search', [], async function (request, response, next) {
@@ -53,7 +57,7 @@ module.exports = function (Common, oauth, log) {
 
                         if (param1 === undefined || param2 === undefined) {
                             axios.post(
-                                    "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                    telegramBotSendUrl,
                                     {
                                         chat_id: message.chat.id,
                                         text: "Please provide a valid inputs!"
@@ -72,7 +76,7 @@ module.exports = function (Common, oauth, log) {
                         }
 
                         axios.post(
-                                "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                telegramBotSendUrl,
                                 {
                                     chat_id: message.chat.id,
                                     text: `${param2} ${param1}: 5`
@@ -110,7 +114,7 @@ module.exports = function (Common, oauth, log) {
 //                        text = result;
                         if (typeof text !== "undefined" || text !== null) {
                             axios.post(
-                                    "https://api.telegram.org/bot1722900443:AAHIJVT5hgwDqR4XuW6NlmBRCt3isKgGZoE/sendMessage",
+                                    telegramBotSendUrl,
                                     {
                                         chat_id: message.chat.id,
                                         text: oMsg
