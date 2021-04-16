@@ -10,7 +10,7 @@ var router = express.Router();
 var ip = require("ip");
 
 const bot = new TelegramBot(token, {
-   polling: true
+   polling: false
 });
 
 module.exports = function (Common, oauth, log) {
@@ -47,7 +47,7 @@ module.exports = function (Common, oauth, log) {
 //                URLs.push(url);
                 bot.sendMessage(
                         chatId,
-                        ` ${param} Today: 5'`,
+                        ` ${param} Today: 5`,
                         );
             });
 
