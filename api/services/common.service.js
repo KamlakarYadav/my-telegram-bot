@@ -41,7 +41,7 @@ module.exports = function (Common, oauth, log) {
 
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
 
-                    let company_today_dsi = sMsgText.match(/\company_today_dsi/gm);
+                    let company_today_dsi = sMsgText.match(/\/company_today_dsi/gm);
 
                     if (company_today_dsi !== null) {
                         const param = sMsgText.split(' ')[1];
@@ -85,9 +85,7 @@ module.exports = function (Common, oauth, log) {
                             console.log("Error :", err);
                             res.end("Error :" + err);
                         });
-                    }
-                    
-                    if (res1 !== null) {
+                    } else if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
 
                         let oMsg = {
