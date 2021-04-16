@@ -21,10 +21,10 @@ module.exports = function (Common, oauth, log) {
         try {
 
 
-//            console.log("req", req.body);
+            console.log("req", req.body);
             const message = req.body.message;
 
-//            console.log("message", message);
+            console.log("message", message);
 
             let text = message;
 
@@ -41,15 +41,17 @@ module.exports = function (Common, oauth, log) {
 
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
 
-                    let company_today_dsi = sMsgText.match(/\/company_today_dsi/gm);
+                    let company_dsi = sMsgText.match(/\/company_dsi/gm);
+                    
+                    console.log(company_dsi);
 
-                    if (company_today_dsi !== null) {
+                    if (company_dsi !== null) {
                         const params = sMsgText.split(' ');
+                    console.log(params);
                         const param1 = params[1];
+                    console.log(param1);
                         const param2 = params[2];
-                        // 'msg' is the received Message from Telegram
-                        // 'match' is the result of executing the regexp above on the text content
-                        // of the message
+                    console.log(param2);
 
                         if (param1 === undefined || param2 === undefined) {
                             axios.post(
