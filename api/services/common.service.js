@@ -91,7 +91,9 @@ module.exports = function (Common, oauth, log) {
                                     console.log("Error :", err);
                                     res.end("Error :" + err);
                                 });
-                    } else if (res1 !== null) {
+                    }
+                    
+                    if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
 
                         let oMsg = {
