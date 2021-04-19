@@ -5,7 +5,7 @@ const schedule = require("node-schedule");
 var router = express.Router();
 
 const telegramBotToken = "1624236294:AAFl3KvH7Fo_XRLDZ5UPFgJwUvTq_4n8lIc";
-const telegramBotSendUrl = "https://api.telegram.org/"+ telegramBotToken +"/sendMessage";
+const telegramBotSendUrl = "https://api.telegram.org/bot"+ telegramBotToken +"/sendMessage";
 
 
 module.exports = function (Common, oauth, log) {
