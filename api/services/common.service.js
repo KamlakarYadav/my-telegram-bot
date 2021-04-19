@@ -110,10 +110,10 @@ module.exports = function (Common, oauth, log) {
 
             if (cmdComapanyDSI !== null) {
 
-                let aMsgText = cmdComapanyDSI.split(" ");
+                let aMsgText = sMsgText.split(" ");
 
                 let oMsg = {
-                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
+                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
                     param1: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
                     param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                 };
@@ -139,10 +139,10 @@ module.exports = function (Common, oauth, log) {
 
             if (cmdRippleDSI !== null) {
 
-                let aMsgText = cmdRippleDSI.split(" ");
+                let aMsgText = sMsgText.split(" ");
 
                 let oMsg = {
-                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
+                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
                     param1: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
                     param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
                 };
