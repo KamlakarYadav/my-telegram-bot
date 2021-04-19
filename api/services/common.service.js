@@ -93,7 +93,65 @@ module.exports = function (Common, oauth, log) {
                         "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
                         {
                             chat_id: message.chat.id,
-                            text: "Welcome!!\nBot has been started successfully!!"
+                            text: oMsg
+                        }).then((response) => {
+                    // We get here if the message was successfully posted
+                    console.log("Message posted");
+                    res.end("ok");
+                }).catch((err) => {
+                    // ...and here if it was not
+                    console.log("Error :", err);
+                    res.end("Error :" + err);
+                });
+
+            }
+
+            let cmdComapanyDSI = sMsgText.match(/\/company_dsi/gm);
+
+            if (cmdComapanyDSI !== null) {
+
+                let aMsgText = cmdComapanyDSI[0].split(" ");
+
+                let oMsg = {
+                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
+                    param1: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
+                    param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
+                };
+
+                axios.post(
+                        "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
+                        {
+                            chat_id: message.chat.id,
+                            text: oMsg
+                        }).then((response) => {
+                    // We get here if the message was successfully posted
+                    console.log("Message posted");
+                    res.end("ok");
+                }).catch((err) => {
+                    // ...and here if it was not
+                    console.log("Error :", err);
+                    res.end("Error :" + err);
+                });
+
+            }
+
+            let cmdRippleDSI = sMsgText.match(/\/ripple_dsi/gm);
+
+            if (cmdRippleDSI !== null) {
+
+                let aMsgText = cmdRippleDSI[0].split(" ");
+
+                let oMsg = {
+                    command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
+                    param1: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
+                    param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
+                };
+
+                axios.post(
+                        "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
+                        {
+                            chat_id: message.chat.id,
+                            text: oMsg
                         }).then((response) => {
                     // We get here if the message was successfully posted
                     console.log("Message posted");
