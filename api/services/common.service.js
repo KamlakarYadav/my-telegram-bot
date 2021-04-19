@@ -4,10 +4,6 @@ const axios = require("axios");
 const schedule = require("node-schedule");
 var router = express.Router();
 
-const telegramBotToken = "1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw";
-const telegramBotSendUrl = "https://api.telegram.org/bot"+ telegramBotToken +"/sendMessage";
-
-
 module.exports = function (Common, oauth, log) {
 
     router.get('/search', [], async function (request, response, next) {
@@ -42,56 +38,6 @@ module.exports = function (Common, oauth, log) {
                     let sMsgText = message.text;
 
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
-
-                    let company_dsi = sMsgText.match(/\/company_dsi/gm);
-
-                    console.log(company_dsi);
-
-                    if (company_dsi !== null) {
-                        const params = sMsgText.split(' ');
-                        console.log(params);
-                        const param1 = params[1];
-                        console.log(param1);
-                        const param2 = params[2];
-                        console.log(param2);
-
-                        if (param1 === undefined || param2 === undefined) {
-                            axios.post(
-                                    telegramBotSendUrl,
-                                    {
-                                        chat_id: message.chat.id,
-                                        text: "Please provide a valid inputs!"
-                                    }
-                            ).then((response) => {
-                                // We get here if the message was successfully posted
-                                console.log("Message posted");
-                                res.end("ok");
-                            })
-                                    .catch((err) => {
-                                        // ...and here if it was not
-                                        console.log("Error :", err);
-                                        res.end("Error :" + err);
-                                    });
-                            return;
-                        }
-
-                        axios.post(
-                                telegramBotSendUrl,
-                                {
-                                    chat_id: message.chat.id,
-                                    text: `${param2} ${param1}: 5`
-                                }
-                        ).then((response) => {
-                            // We get here if the message was successfully posted
-                            console.log("Message posted");
-                            res.end("ok");
-                        })
-                                .catch((err) => {
-                                    // ...and here if it was not
-                                    console.log("Error :", err);
-                                    res.end("Error :" + err);
-                                });
-                    }
                     
                     if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
@@ -106,17 +52,9 @@ module.exports = function (Common, oauth, log) {
                             message: sMsgText
                         };
 
-//                        let rows = await Common.save(oMsg);
-
-//                        let result = JSON.parse(JSON.stringify(rows))[2][0];
-//                        response.status(200).send(result);
-
-//                        console.log(result);
-
-//                        text = result;
                         if (typeof text !== "undefined" || text !== null) {
                             axios.post(
-                                    telegramBotSendUrl,
+                                    "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
                                     {
                                         chat_id: message.chat.id,
                                         text: oMsg
@@ -132,20 +70,6 @@ module.exports = function (Common, oauth, log) {
                                         res.end("Error :" + err);
                                     });
                         }
-
-//                        let todaysTotalDsi = await Common.getTodaysTotalDsi();
-//                        let oTodaysTotalDsi = JSON.parse(JSON.stringify(todaysTotalDsi[0]));
-
-//                        let todaysGroupwiseTotalDsi = await Common.getTodaysGroupwiseTotalDsi();
-//                        let oTodaysGroupwiseTotalDsi = JSON.parse(JSON.stringify(todaysGroupwiseTotalDsi[0]));
-
-//                        console.log(oTodaysTotalDsi);
-//                        console.log(oTodaysGroupwiseTotalDsi);
-
-
-//                        text += oTodaysTotalDsi;
-
-//                        text += oTodaysGroupwiseTotalDsi;
 
                     }
 
