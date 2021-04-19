@@ -114,7 +114,7 @@ module.exports = function (Common, oauth, log) {
                     let cmdStart = sMsgText.match(/\/start/gm);
                     
                     if (cmdStart !== null) {
-                        let aMsgText = res1[0].split("-");
+//                        let aMsgText = res1[0].split("-");
 
                         let oMsg = "Welcome!!\nBot has been started successfully!!";
 
