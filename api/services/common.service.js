@@ -77,8 +77,12 @@ module.exports = function (Common, oauth, log) {
 
                     let res1 = sMsgText.match(/\$[a-zA-Z\d\-\/]{1,}\$/gm);
                     
+                    console.log("res1", res1);
+                    
                     if (res1 !== null) {
                         let aMsgText = res1[0].split("-");
+                        
+                        console.log("aMsgText", aMsgText);
 
                         let oMsg = {
                             group: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
@@ -89,6 +93,8 @@ module.exports = function (Common, oauth, log) {
                             chat_id: message.chat.id,
                             message: sMsgText
                         };
+                        
+                        console.log("oMsg", oMsg);
 
                         axios.post(
                                 "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
@@ -108,15 +114,21 @@ module.exports = function (Common, oauth, log) {
                                 });
 
                     } else {
+                    
+                    console.log("ELSE-1");
                         res.end("ok");
                     }
                     
                     let cmdStart = sMsgText.match(/\/start/gm);
                     
+                    console.log("cmdStart", cmdStart);
+                    
                     if (cmdStart !== null) {
 //                        let aMsgText = res1[0].split("-");
 
                         let oMsg = "Welcome!!\nBot has been started successfully!!";
+                    
+                    console.log("oMsg", oMsg);
 
                             axios.post(
                                 "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
@@ -136,6 +148,7 @@ module.exports = function (Common, oauth, log) {
                                 });
 
                     } else {
+                    console.log("ELSE-2");
                         res.end("ok");
                     }
 
