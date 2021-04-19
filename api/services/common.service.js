@@ -110,7 +110,7 @@ module.exports = function (Common, oauth, log) {
 
             if (cmdComapanyDSI !== null) {
 
-                let aMsgText = cmdComapanyDSI[0].split(" ");
+                let aMsgText = cmdComapanyDSI.split(" ");
 
                 let oMsg = {
                     command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
@@ -139,7 +139,7 @@ module.exports = function (Common, oauth, log) {
 
             if (cmdRippleDSI !== null) {
 
-                let aMsgText = cmdRippleDSI[0].split(" ");
+                let aMsgText = cmdRippleDSI.split(" ");
 
                 let oMsg = {
                     command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0].replace('$', '') : "NA",
