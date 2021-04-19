@@ -4,7 +4,7 @@ const axios = require("axios");
 const schedule = require("node-schedule");
 var router = express.Router();
 
-const telegramBotToken = "1624236294:AAFl3KvH7Fo_XRLDZ5UPFgJwUvTq_4n8lIc";
+const telegramBotToken = "1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw";
 const telegramBotSendUrl = "https://api.telegram.org/bot"+ telegramBotToken +"/sendMessage";
 
 
