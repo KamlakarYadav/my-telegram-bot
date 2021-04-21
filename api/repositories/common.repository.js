@@ -37,6 +37,7 @@ let commonRepository = function (pool, log) {
     this.save = async function (Params) {
         console.log('Params: ', Params);
         console.log('pool: ', pool);
+        console.log('pool-query: ', pool.query("call spc_tg_common_todays_total_dsi_count()", []));
         try {
             var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
             return await pool.query(sp_text,
