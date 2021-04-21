@@ -45,9 +45,8 @@ let commonRepository = function (pool, log) {
     
     this.save = async function (Params) {
         console.log('Params: ', Params);
-        console.log('pool: ', pool);
         try {
-
+        console.log('Params1');
 
         // Run your query
         let results = await mysql.query("call spc_tg_common_todays_total_dsi_count()");
