@@ -88,12 +88,16 @@ module.exports = function (Common, oauth, log) {
                     chat_id: message.chat.id,
                     message: sMsgText
                 };
+                
+                let rows = await Common.save(oMsg);
+                let result = JSON.parse(JSON.stringify(rows))[2][0];
+//                response.status(200).send(result);
 
                 axios.post(
                         "https://api.telegram.org/bot1673619098:AAFs41c9rnkikfwpdhcdBjJQgfB16CjYGnw/sendMessage",
                         {
                             chat_id: message.chat.id,
-                            text: oMsg
+                            text: result
                         }).then((response) => {
                     // We get here if the message was successfully posted
                     console.log("Message posted");
@@ -115,7 +119,7 @@ module.exports = function (Common, oauth, log) {
                 let oMsg = {
                     command: (typeof aMsgText[0] !== "undefined") ? aMsgText[0] : "NA",
                     param1: (typeof aMsgText[1] !== "undefined") ? aMsgText[1] : "NA",
-                    param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA",
+                    param2: (typeof aMsgText[2] !== "undefined") ? aMsgText[2] : "NA"
                 };
 
                 axios.post(
