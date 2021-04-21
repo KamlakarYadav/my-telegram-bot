@@ -46,29 +46,27 @@ let commonRepository = function (pool, log) {
     this.save = async function (Params) {
         console.log('Params: ', Params);
         console.log('pool: ', pool);
-        
-        
-  // Run your query
-  let results = await mysql.query("call spc_tg_common_todays_total_dsi_count()", []);
-
-  // Run clean up function
-  await mysql.end();
-  
-        console.log('pool-query: ', results);
         try {
-            var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
-            return await pool.query(sp_text,
-                    [
-                        Params["id"] != null ? parseInt(item.id) : null,
-                        Params.group,
-                        Params.name,
-                        Params.company,
-                        Params.date,
-                        Params.members,
-                        Params.chat_id,
-                        Params.message
-                        
-                    ]);
+
+
+        // Run your query
+        let results = await mysql.query("call spc_tg_common_todays_total_dsi_count()");
+
+        console.log('pool-query: ', results);
+        
+//            var sp_text = "SET @out_id = 0; call spc_tg_common_save(?,?,?,?,?,?,?,?, @out_id); SELECT @out_id as id;";
+//            return await pool.query(sp_text,
+//                    [
+//                        Params["id"] != null ? parseInt(item.id) : null,
+//                        Params.group,
+//                        Params.name,
+//                        Params.company,
+//                        Params.date,
+//                        Params.members,
+//                        Params.chat_id,
+//                        Params.message
+//                        
+//                    ]);
         } catch (err) {
             console.log('Error thrown : ', err);
             log.dbErrorLog("Common.save", err);
